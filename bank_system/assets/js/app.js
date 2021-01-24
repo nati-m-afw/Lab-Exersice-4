@@ -23,12 +23,10 @@
         switch (transactionType) {
             case "1":
                 deposit(    parseFloat(prompt("How much would you like to deposit?")) ,  user   );
-                console.log("Your account balance is " + balance(user) + " Birr.");
                 break;
         
             case "2":
                 withdraw(    parseFloat(prompt("How much would you like to withdraw?")) ,  user   );
-                console.log("Your account balance is " + balance(user) + " Birr.");
                 break;
             
             case "3":
@@ -38,7 +36,6 @@
             case "4":
                 prompt("Enter the recepeint's account number:");
                 transfer(    parseFloat(prompt("How much would you like to transfer?")) ,  user   );
-                console.log("Your account balance is " + balance(user) + " Birr.");
                 break;
                     
             
@@ -55,10 +52,18 @@
 
 function deposit(deposit, user){
     user.balance += deposit;
+    console.log("Your account balance at this moment is " + balance(user) + " Birr.");
 }
 
 function withdraw(withdrawal, user){
-    user.balance -= withdrawal;
+    if (withdrawal < user.balance - 50 && withdrawal < 5000)
+        user.balance -= withdrawal;
+    else if(withdrawal > user.balance - 50)
+        console.log("Insufficient funds!");
+    else if(amountToBeTransferred > user.balance)
+        console.log("Minimum of 50 Birr is needed to keep the account active!");
+    else
+        console.log("Withdrawal limit exceeded try less than 5000 Birr.");
 }
 
 function balance(user){
@@ -66,5 +71,10 @@ function balance(user){
 }
 
 function transfer(amountToBeTransferred, user){
-    user.balance -= amountToBeTransferred;
+    if (amountToBeTransferred < user.balance - 50)
+        user.balance -= amountToBeTransferred;
+    else if(amountToBeTransferred > user.balance - 50)
+        console.log("Insufficient funds!");
+    else if(amountToBeTransferred > user.balance)
+        console.log("Minimum of 50 Birr is needed to keep the account active!");
 }
