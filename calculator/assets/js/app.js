@@ -13,7 +13,7 @@ var input = [];
             input.push(     parseFloat(prompt("Enter number:"))     );
             do{
                 input.push(     parseFloat(prompt("Enter number:"))     );
-            }while (    prompt("Do you want to enter more numbers? ( Y / N )").toLowerCase() == "y"   )
+            }while (    prompt("Do you want to enter more numbers? ( Y / y to continue )").toLowerCase() == "y"   )
         
             break;
     
